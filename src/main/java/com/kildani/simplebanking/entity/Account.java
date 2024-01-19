@@ -45,9 +45,9 @@ public @Data class Account {
     @JoinColumn(name = "client_id")
     private Client owner;
 
-    @OneToMany(mappedBy = "sourceAccount")
+    @OneToMany(mappedBy = "destinationAccount")
     private List<Transaction> incomingTransactions;
 
-    @OneToMany(mappedBy = "destinationAccount")
+    @OneToMany(mappedBy = "sourceAccount")
     private List<Transaction> outgoingTransactions;
 }
