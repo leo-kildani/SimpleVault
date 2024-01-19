@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS accounts (
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
-    transaction_id BINARY(16) PRIMARY KEY AUTO_INCREMENT,
+    transaction_id BINARY(16) PRIMARY KEY,
     source_account_id INT,
     destination_account_id INT,
     timestamp DATETIME,
