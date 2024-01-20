@@ -5,7 +5,6 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,10 +35,10 @@ public @Data class Client {
     @Column(name = "date_of_birth")
     private LocalDate dob;
 
-    @OneToMany(mappedBy = "benefactor", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "benefactor")
     private List<Beneficiary> beneficiaries;
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner")
     private List<Account> accounts;
 
     public Client(String firstName, String lastName, LocalDate dob) {
