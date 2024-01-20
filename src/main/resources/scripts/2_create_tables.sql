@@ -1,12 +1,19 @@
-CREATE TABLE IF NOT EXISTS clients (
-    client_id INT PRIMARY KEY AUTO_INCREMENT,
+USE simplevault;
+
+DROP TABLE IF EXISTS beneficiaries;
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS clients;
+
+CREATE TABLE clients (
+    client_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(64),
     last_name VARCHAR(64),
     date_of_birth DATE
 );
 
-CREATE TABLE IF NOT EXISTS beneficiaries (
-    beneficiary_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE beneficiaries (
+    beneficiary_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(64),
     last_name VARCHAR(64),
     date_of_birth DATE,
@@ -14,8 +21,8 @@ CREATE TABLE IF NOT EXISTS beneficiaries (
     FOREIGN KEY (client_id) REFERENCES clients(client_id)
 );
 
-CREATE TABLE IF NOT EXISTS accounts (
-    account_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE accounts (
+    account_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     account_type VARCHAR(16),
     balance DECIMAL,
     account_number INT(9),
@@ -25,11 +32,11 @@ CREATE TABLE IF NOT EXISTS accounts (
     CONSTRAINT account_and_routing_numbers_constraing UNIQUE (account_number, routing_number)
 );
 
-CREATE TABLE IF NOT EXISTS transactions (
-    transaction_id BINARY(16) PRIMARY KEY,
+CREATE TABLE transactions (
+    transaction_id BINARY(16) NOT NULL PRIMARY KEY,
     source_account_id INT,
     destination_account_id INT,
-    timestamp DATETIME,
+    `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     transaction_amount DECIMAL,
     transaction_type VARCHAR(32),
     FOREIGN KEY (source_account_id) REFERENCES accounts(account_id),
