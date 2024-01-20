@@ -1,6 +1,7 @@
 package com.kildani.simplebanking.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,8 +18,11 @@ import com.kildani.simplebanking.entity.Account;
 import com.kildani.simplebanking.entity.Client;
 import com.kildani.simplebanking.entity.Transaction;
 
+import lombok.extern.slf4j.Slf4j;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Slf4j
 public class TransactionRepositoryTest {
 
     @Autowired

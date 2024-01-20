@@ -1,12 +1,11 @@
 package com.kildani.simplebanking.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.SourceType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,9 +41,10 @@ public @Data class Transaction {
     @JoinColumn(name = "destination_account_id")
     private Account destinationAccount;
 
-    @Column(name = "timestamp")
-    @CreationTimestamp(source = SourceType.DB)
-    private LocalDateTime timestamp;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "occurred_on", updatable = false)
+    private Timestamp occurredOn;
 
     @Column(name = "transaction_amount", precision = 9, scale = 2)
     private BigDecimal transactionAmount;

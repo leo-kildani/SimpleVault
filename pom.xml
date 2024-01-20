@@ -59,8 +59,8 @@
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf</artifactId>
 			<version>3.1.2.RELEASE</version>
-			</dependency>
-		</dependencies>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
