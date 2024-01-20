@@ -31,11 +31,11 @@ public @Data class Account {
     @Column(name = "account_type")
     private String accountType;
 
-    @Column(name = "account_number")
+    @Column(name = "account_number", unique = true)
     @Setter(value = AccessLevel.NONE)
     private int accountNumber;
 
-    @Column(name = "routing_number")
+    @Column(name = "routing_number", unique = true)
     @Setter(value = AccessLevel.NONE)
     private int routingNumber;
 
@@ -58,5 +58,6 @@ public @Data class Account {
         this.accountNumber = accountNumber;
         this.routingNumber = routingNumber;
         this.owner = owner;
+        this.balance = new BigDecimal(0);
     }
 }

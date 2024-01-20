@@ -70,4 +70,12 @@ class AccountRepositoryTest {
         List<Account> retrievedAccounts = accountRepository.findByOwner(myClient);
         assertEquals(retrievedAccounts.get(0), myAccount);
     }
+
+    @Test
+    void givenAccountCreate_whenFindByAccountNumber_thenSuccess() {
+        entityManager.persist(myClient);
+        entityManager.persist(myAccount);
+        Account retrievedAccount = accountRepository.findByAccountNumber(myAccount.getAccountNumber()).get();
+        assertEquals(retrievedAccount, myAccount);
+    }
 }
