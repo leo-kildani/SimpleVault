@@ -15,15 +15,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "transactions")
-public class Transaction {
+@NoArgsConstructor
+public @Data class Transaction {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "transaction_id")
+    @Setter(value = AccessLevel.NONE)
     private UUID transactionId;
 
     @ManyToOne
@@ -38,9 +44,17 @@ public class Transaction {
     @CreationTimestamp(source = SourceType.DB)
     private LocalDateTime timestamp;
 
-    @Column(name = "transaction_amount")
+    @Column(name = "transaction_amount", precision = 9, scale = 2)
     private BigDecimal transactionAmount;
 
     @Column(name = "transaction_type")
     private String transactionType;
+
+    public Transaction(Account sourceAccount, Account destinationAccount, BigDecimal transactionAmount,
+            String transactionType) {
+        this.sourceAccount = sourceAccount;
+        this.destinationAccount = destinationAccount;
+        this.transactionAmount = transactionAmount;
+        this.transactionType = transactionType;
+    }
 }

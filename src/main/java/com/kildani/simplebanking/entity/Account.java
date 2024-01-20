@@ -14,14 +14,16 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "accounts")
+@NoArgsConstructor
 public @Data class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "account_id")
     @Setter(value = AccessLevel.NONE)
     private int accountId;
@@ -37,7 +39,7 @@ public @Data class Account {
     @Setter(value = AccessLevel.NONE)
     private int routingNumber;
 
-    @Column(name = "balance")
+    @Column(name = "balance", precision = 9, scale = 2)
     @Setter(value = AccessLevel.NONE)
     private BigDecimal balance;
 
@@ -50,4 +52,11 @@ public @Data class Account {
 
     @OneToMany(mappedBy = "sourceAccount")
     private List<Transaction> outgoingTransactions;
+
+    public Account(String accountType, int accountNumber, int routingNumber, Client owner) {
+        this.accountType = accountType;
+        this.accountNumber = accountNumber;
+        this.routingNumber = routingNumber;
+        this.owner = owner;
+    }
 }

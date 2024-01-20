@@ -1,7 +1,6 @@
 package com.kildani.simplebanking.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -47,7 +46,5 @@ public @Data class Client {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
-        this.accounts = new ArrayList<>();
-        this.beneficiaries = new ArrayList<>();
     }
 }
