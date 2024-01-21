@@ -12,10 +12,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "beneficiaries")
+@NoArgsConstructor
 public @Data class Beneficiary {
 
     @Id
@@ -36,4 +38,11 @@ public @Data class Beneficiary {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client benefactor;
+
+    public Beneficiary(String firstName, String lastName, LocalDate dob, Client benefactor) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.benefactor = benefactor;
+    }
 }
