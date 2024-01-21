@@ -14,7 +14,6 @@ public class TestDatabaseConfig {
     @Primary
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/test_simplevault");
         dataSource.setUsername("simplevault_user");
         dataSource.setPassword("simplevault_password");

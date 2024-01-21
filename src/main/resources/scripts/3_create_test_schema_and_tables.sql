@@ -48,7 +48,7 @@ CREATE TABLE transactions (
     transaction_id BINARY(16) NOT NULL PRIMARY KEY,
     source_account_id INT,
     destination_account_id INT,
-    `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    occurred_on DATETIME DEFAULT CURRENT_TIMESTAMP,
     transaction_amount DECIMAL,
     transaction_type VARCHAR(32),
     FOREIGN KEY (source_account_id) REFERENCES accounts(account_id),
