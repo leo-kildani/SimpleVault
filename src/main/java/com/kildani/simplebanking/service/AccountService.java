@@ -1,26 +1,30 @@
 package com.kildani.simplebanking.service;
 
+import java.util.List;
+
 import com.kildani.simplebanking.entity.Account;
 import com.kildani.simplebanking.entity.Client;
+import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 public interface AccountService {
 
     /**
-     * Create a new account given the account type and the owner of the account.
+     * Create a new account given the account type and the owner of the account and
+     * saves it to memory.
      * 
      * @param accountType
      * @param owner
-     * @return an Account object with a set accountType, a set owner, a unique
-     *         generated accountNumber, a unique generated routingNumber.
+     * @throws InvalidDataException
      */
-    Account createAccount(String accountType, Client owner);
+    void createAccount(String accountType, Client owner) throws InvalidDataException;
 
     /**
-     * Save account into memory; Updates account if account in memory.
+     * Updates account if account in memory.
      * 
      * @param account
+     * @throws InvalidDataException
      */
-    void saveAccount(Account account);
+    void updateAccount(Account account) throws InvalidDataException;
 
     /**
      * Delete an account from memory.
@@ -52,4 +56,12 @@ public interface AccountService {
      * @return Account object with matching routingNumber; null otherwise.
      */
     Account findAccountByRoutingNumber(int routingNumber);
+
+    /**
+     * Find accounts with matching owner.
+     * 
+     * @param client
+     * @return list of Account objects with matching owner.
+     */
+    List<Account> findAccountsByClient(Client owner);
 }

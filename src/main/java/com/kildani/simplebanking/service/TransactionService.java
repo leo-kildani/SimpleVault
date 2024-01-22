@@ -6,27 +6,22 @@ import java.util.UUID;
 
 import com.kildani.simplebanking.entity.Account;
 import com.kildani.simplebanking.entity.Transaction;
+import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 public interface TransactionService {
 
     /**
      * Create a new transaction given the source & destination account, and the
-     * transaction amount.
+     * transaction amount and save new transaction to memory.
      * 
      * @param sourceAccount
      * @param destinationAccount
      * @param transactionAmount
-     * @return new Transaction object with a set sourceAccount, destinationAccount,
-     *         and transactionAmount
+     * @throws InvalidDataException
      */
-    Transaction createTransaction(Account sourceAccount, Account destinationAccount, BigDecimal transactionAmount);
-
-    /**
-     * Save a transaction to memory; Update a transaction already in memory.
-     * 
-     * @param transaction
-     */
-    void saveTransaction(Transaction transaction);
+    void createTransaction(Account sourceAccount, Account destinationAccount, BigDecimal transactionAmount,
+            String transactionType)
+            throws InvalidDataException;
 
     /**
      * Delete a transaction from memory.
@@ -48,14 +43,16 @@ public interface TransactionService {
      * 
      * @param account
      * @return a list of Transaction objects with matching source account.
+     * @throws InvalidDataException
      */
-    List<Transaction> findTransactionsBySourceAccount(Account account);
+    List<Transaction> findTransactionsBySourceAccount(Account account) throws InvalidDataException;
 
     /**
      * Find all transactions with a matching destination account.
      * 
      * @param account
      * @return a list of Transaction objects with matching destination account.
+     * @throws InvalidDataException
      */
-    List<Transaction> findTransactionsByDestinationAccount(Account account);
+    List<Transaction> findTransactionsByDestinationAccount(Account account) throws InvalidDataException;
 }
