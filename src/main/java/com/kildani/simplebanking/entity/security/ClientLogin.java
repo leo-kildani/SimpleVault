@@ -13,9 +13,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "client_logins")
+@NoArgsConstructor
 public @Data class ClientLogin {
 
     @Id

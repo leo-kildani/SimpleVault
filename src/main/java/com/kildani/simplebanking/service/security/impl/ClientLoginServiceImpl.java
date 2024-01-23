@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.kildani.simplebanking.entity.Client;
 import com.kildani.simplebanking.entity.security.ClientLogin;
@@ -18,6 +19,7 @@ import com.kildani.simplebanking.repository.security.ClientRoleRepository;
 import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 import com.kildani.simplebanking.service.security.ClientLoginService;
 
+@Service
 public class ClientLoginServiceImpl implements ClientLoginService {
 
     @Autowired
