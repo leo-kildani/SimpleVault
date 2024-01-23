@@ -3,12 +3,15 @@ package com.kildani.simplebanking.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.kildani.simplebanking.entity.security.ClientLogin;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -40,6 +43,9 @@ public @Data class Client {
 
     @OneToMany(mappedBy = "owner")
     private List<Account> accounts;
+
+    @OneToOne(mappedBy = "client")
+    private ClientLogin clientLogin;
 
     public Client(String firstName, String lastName, LocalDate dob) {
         this.firstName = firstName;
