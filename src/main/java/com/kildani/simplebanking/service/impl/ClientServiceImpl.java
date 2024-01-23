@@ -17,11 +17,13 @@ public class ClientServiceImpl implements ClientService {
     ClientRepository clientRepo;
 
     @Override
-    public void createClient(String firstName, String lastName, LocalDate dob) throws InvalidDataException {
+    public Client createClient(String firstName, String lastName, LocalDate dob) throws InvalidDataException {
         if (firstName == null || lastName == null || dob == null) {
             throw new InvalidDataException();
         }
-        clientRepo.save(new Client(firstName, lastName, dob));
+        Client newClient = new Client(firstName, lastName, dob);
+        clientRepo.save(newClient);
+        return newClient;
     }
 
     @Override

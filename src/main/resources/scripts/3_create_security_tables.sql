@@ -4,7 +4,7 @@ CREATE TABLE client_logins (
     username VARCHAR(64) COLLATE utf8mb4_general_ci NOT NULL PRIMARY KEY,
     password CHAR(72) NOT NULL,
     client_id INT,
-    enabled TINYINT NOT NULL,
+    enabled TINYINT DEFAULT 1,
     FOREIGN KEY (client_id) REFERENCES clients(client_id)
 );
 

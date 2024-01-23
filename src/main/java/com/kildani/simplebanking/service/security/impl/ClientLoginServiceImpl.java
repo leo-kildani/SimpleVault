@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kildani.simplebanking.entity.Client;
@@ -28,14 +29,20 @@ public class ClientLoginServiceImpl implements ClientLoginService {
     @Autowired
     private ClientRoleRepository clientRoleRepo;
 
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+
     @Override
-    public void createClientLogin(String username, String password, Client client, String... roles)
+    public void createClientLogin(String username, String rawPassword, Client client, String... roles)
             throws InvalidDataException {
-        if (username == null || password == null || client == null || roles.length == 0) {
+        if (username == null || rawPassword == null || client == null || roles.length == 0) {
             throw new InvalidDataException();
         }
-        ClientLogin newClientLogin = new ClientLogin(username, password, client);
-        clientLoginRepo.save(new ClientLogin(username, password, client));
+
+        String encryptedPassword = passwordEncoder.encode(rawPassword);
+
+        ClientLogin newClientLogin = new ClientLogin(username, encryptedPassword, client);
+        clientLoginRepo.save(newClientLogin);
         for (String role : roles) {
             clientRoleRepo.save(new ClientRole(role, newClientLogin));
         }

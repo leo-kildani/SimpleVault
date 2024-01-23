@@ -14,9 +14,10 @@ public interface ClientService {
      * @param firstName
      * @param lastName
      * @param dob
+     * @return Client object that has been created
      * @throws InvalidDataException
      */
-    void createClient(String firstName, String lastName, LocalDate dob) throws InvalidDataException;
+    Client createClient(String firstName, String lastName, LocalDate dob) throws InvalidDataException;
 
     /**
      * Updates client if client is in memory.
