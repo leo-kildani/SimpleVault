@@ -1,7 +1,5 @@
 package com.kildani.simplebanking.service.impl;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +15,9 @@ public class ClientServiceImpl implements ClientService {
     ClientRepository clientRepo;
 
     @Override
-    public Client createClient(String firstName, String lastName, LocalDate dob) throws InvalidDataException {
-        if (firstName == null || lastName == null || dob == null) {
-            throw new InvalidDataException();
-        }
-        Client newClient = new Client(firstName, lastName, dob);
-        clientRepo.save(newClient);
-        return newClient;
-    }
-
-    @Override
-    public void updateClient(Client client) throws InvalidDataException {
-        if (client == null) {
+    public void saveClient(Client client) throws InvalidDataException {
+        if (client == null || client.getFirstName() == null || client.getLastName() == null
+                || client.getDob() == null) {
             throw new InvalidDataException();
         }
         clientRepo.save(client);

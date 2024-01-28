@@ -8,24 +8,12 @@ import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 public interface ClientService {
 
     /**
-     * Create a Client object given the first name, last name, and date of birth and
-     * saves it to memory.
-     * 
-     * @param firstName
-     * @param lastName
-     * @param dob
-     * @return Client object that has been created
-     * @throws InvalidDataException
-     */
-    Client createClient(String firstName, String lastName, LocalDate dob) throws InvalidDataException;
-
-    /**
-     * Updates client if client is in memory.
+     * Saves/Updates client if client is in memory.
      * 
      * @param client
      * @throws InvalidDataException
      */
-    void updateClient(Client client) throws InvalidDataException;
+    void saveClient(Client client) throws InvalidDataException;
 
     /**
      * Deletes a client from memory.
