@@ -33,12 +33,14 @@
                 <form
                     class="w-25"
                     th:action="@{/create_account}"
+                    th:object="${client}"
                     th:method="POST">
                     <div class="my-3 form-group">
                         <label for="firstName" class="form-label"
                             >First Name</label
                         ><input
                             type="text"
+                            th:field="*{firstName}"
                             name="firstName"
                             class="form-control"
                             id="fName"
@@ -50,6 +52,7 @@
                         ><input
                             type="text"
                             class="form-control"
+                            th:field="*{lastName}"
                             name="lName"
                             id="lastName"
                             required />
@@ -59,6 +62,7 @@
                             >Date of Birth</label
                         ><input
                             type="date"
+                            th:field="*{dob}"
                             class="form-control"
                             name="dob"
                             id="dateOfBirth"
