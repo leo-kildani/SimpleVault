@@ -1,7 +1,5 @@
 package com.kildani.simplebanking.service;
 
-import java.time.LocalDate;
-
 import com.kildani.simplebanking.entity.Client;
 import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 

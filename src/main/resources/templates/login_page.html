@@ -10,9 +10,6 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous" />
         <style>
-            div {
-                border: 1px solid red;
-            }
             body,
             html {
                 height: 100%;
@@ -65,9 +62,14 @@
                             <i>Sorry, the username or password was invalid.</i>
                         </div>
                         <div
-                            class="mt-3 alert alert-danger"
+                            class="mt-3 alert alert-info"
                             th:if="${param.logout}">
                             <i>You have successfully logged out.</i>
+                        </div>
+                        <div
+                            class="mt-3 alert alert-info"
+                            th:if="${createdAccount}">
+                            <i>You have successfully created an account.</i>
                         </div>
                     </div>
                 </div>
