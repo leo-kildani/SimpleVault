@@ -30,6 +30,7 @@ public class SimpleVaultSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         String[] whitelist = {
                 "/css/**",
+                "/js/**",
                 "/images/**",
                 "/create_account/**"
         };

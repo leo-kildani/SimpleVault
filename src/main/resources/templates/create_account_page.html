@@ -17,6 +17,12 @@
             .h-20 {
                 height: 20%;
             }
+            .hidden {
+                visibility: hidden;
+            }
+            .visible {
+                visibility: visible;
+            }
         </style>
     </head>
     <body class="container-fluid p-3 h-100 w-75 text-center">
@@ -36,8 +42,7 @@
                     th:object="${client}"
                     th:method="POST">
                     <div class="my-3 form-group">
-                        <label for="firstName" class="form-label"
-                            >First Name</label
+                        <label for="fName" class="form-label">First Name</label
                         ><input
                             type="text"
                             th:field="*{firstName}"
@@ -46,35 +51,33 @@
                             required />
                     </div>
                     <div class="my-3 form-group">
-                        <label for="lastName" class="form-label"
-                            >Last Name</label
+                        <label for="lName" class="form-label">Last Name</label
                         ><input
                             type="text"
                             class="form-control"
                             th:field="*{lastName}"
-                            id="lastName"
+                            id="lName"
                             required />
                     </div>
                     <div class="my-3 form-group">
-                        <label for="dateOfBirth" class="form-label"
-                            >Date of Birth</label
+                        <label for="dob" class="form-label">Date of Birth</label
                         ><input
                             type="date"
                             th:field="*{dob}"
                             class="form-control"
-                            id="dateOfBirth"
+                            id="dob"
                             required />
                         <div class="invalid-feedback">
                             Please fill in your date of birth.
                         </div>
                     </div>
                     <div class="my-3 form-group">
-                        <label for="userName" class="form-label">Username</label
+                        <label for="username" class="form-label">Username</label
                         ><input
                             type="text"
                             class="form-control"
                             name="username"
-                            id="userName"
+                            id="username"
                             required />
                     </div>
                     <div class="my-3 form-group">
@@ -102,6 +105,9 @@
                             class="btn btn-primary"
                             value="Submit" />
                     </div>
+                    <div id="form-alerts" class="hidden alert alert-danger">
+                        <i></i>
+                    </div>
                     <div class="my-3 align-items-center">
                         <p>
                             Already have an account?
@@ -113,5 +119,8 @@
                 </form>
             </div>
         </div>
+        <script
+            src="../static/js/create_account_script.js"
+            th:src="@{/js/create_account_script.js}"></script>
     </body>
 </html>
