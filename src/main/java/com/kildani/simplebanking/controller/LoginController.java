@@ -12,7 +12,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.kildani.simplebanking.entity.Client;
 import com.kildani.simplebanking.service.ClientService;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 import com.kildani.simplebanking.service.security.ClientLoginService;
 
 @Controller
@@ -38,13 +37,9 @@ public class LoginController {
     @PostMapping("/create_account")
     public RedirectView createClientAccount(@RequestParam String username, @RequestParam String password,
             @ModelAttribute Client client, RedirectAttributes redirectAttributes) {
-        try {
             clientService.saveClient(client);
             clientLoginService.createClientLogin(username, password, client, "client");
             redirectAttributes.addFlashAttribute("createdAccount", true);
             return new RedirectView("/login", true);
-        } catch (InvalidDataException e) {
-            return new RedirectView("/crete_account", true);
-        }
     }
 }

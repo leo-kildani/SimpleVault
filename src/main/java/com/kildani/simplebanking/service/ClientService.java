@@ -1,7 +1,6 @@
 package com.kildani.simplebanking.service;
 
 import com.kildani.simplebanking.entity.Client;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 public interface ClientService {
 
@@ -9,9 +8,8 @@ public interface ClientService {
      * Saves/Updates client if client is in memory.
      * 
      * @param client
-     * @throws InvalidDataException
-     */
-    void saveClient(Client client) throws InvalidDataException;
+    **/
+    void saveClient(Client client);
 
     /**
      * Deletes a client from memory.

@@ -17,7 +17,6 @@ import com.kildani.simplebanking.entity.security.ClientLogin;
 import com.kildani.simplebanking.entity.security.ClientRole;
 import com.kildani.simplebanking.repository.security.ClientLoginRepository;
 import com.kildani.simplebanking.repository.security.ClientRoleRepository;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 import com.kildani.simplebanking.service.security.ClientLoginService;
 
 @Service
@@ -33,11 +32,7 @@ public class ClientLoginServiceImpl implements ClientLoginService {
     BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public void createClientLogin(String username, String rawPassword, Client client, String... roles)
-            throws InvalidDataException {
-        if (username == null || rawPassword == null || client == null || roles.length == 0) {
-            throw new InvalidDataException();
-        }
+    public void createClientLogin(String username, String rawPassword, Client client, String... roles) {
 
         String encryptedPassword = passwordEncoder.encode(rawPassword);
 

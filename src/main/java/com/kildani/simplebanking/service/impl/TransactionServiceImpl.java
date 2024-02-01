@@ -10,7 +10,6 @@ import com.kildani.simplebanking.entity.Account;
 import com.kildani.simplebanking.entity.Transaction;
 import com.kildani.simplebanking.repository.TransactionRepository;
 import com.kildani.simplebanking.service.TransactionService;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 public class TransactionServiceImpl implements TransactionService {
 
@@ -19,10 +18,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void createTransaction(Account sourceAccount, Account destinationAccount,
-            BigDecimal transactionAmount, String transactionType) throws InvalidDataException {
-        if (sourceAccount == null || destinationAccount == null || transactionAmount == null) {
-            throw new InvalidDataException();
-        }
+            BigDecimal transactionAmount, String transactionType) {
         transactionRepo.save(new Transaction(sourceAccount, destinationAccount, transactionAmount, transactionType));
     }
 
@@ -37,18 +33,12 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> findTransactionsBySourceAccount(Account account) throws InvalidDataException {
-        if (account == null) {
-            throw new InvalidDataException();
-        }
+    public List<Transaction> findTransactionsBySourceAccount(Account account) {
         return transactionRepo.findBySourceAccount(account);
     }
 
     @Override
-    public List<Transaction> findTransactionsByDestinationAccount(Account account) throws InvalidDataException {
-        if (account == null) {
-            throw new InvalidDataException();
-        }
+    public List<Transaction> findTransactionsByDestinationAccount(Account account) {
         return transactionRepo.findByDestinationAccount(account);
     }
 }

@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import com.kildani.simplebanking.entity.Account;
 import com.kildani.simplebanking.entity.Transaction;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 public interface TransactionService {
 
@@ -17,11 +16,10 @@ public interface TransactionService {
      * @param sourceAccount
      * @param destinationAccount
      * @param transactionAmount
-     * @throws InvalidDataException
      */
     void createTransaction(Account sourceAccount, Account destinationAccount, BigDecimal transactionAmount,
-            String transactionType)
-            throws InvalidDataException;
+            String transactionType);
+    
 
     /**
      * Delete a transaction from memory.
@@ -43,16 +41,14 @@ public interface TransactionService {
      * 
      * @param account
      * @return a list of Transaction objects with matching source account.
-     * @throws InvalidDataException
      */
-    List<Transaction> findTransactionsBySourceAccount(Account account) throws InvalidDataException;
+    List<Transaction> findTransactionsBySourceAccount(Account account);
 
     /**
      * Find all transactions with a matching destination account.
      * 
      * @param account
      * @return a list of Transaction objects with matching destination account.
-     * @throws InvalidDataException
      */
-    List<Transaction> findTransactionsByDestinationAccount(Account account) throws InvalidDataException;
+    List<Transaction> findTransactionsByDestinationAccount(Account account);
 }

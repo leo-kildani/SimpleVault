@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.kildani.simplebanking.entity.Client;
 import com.kildani.simplebanking.repository.ClientRepository;
 import com.kildani.simplebanking.service.ClientService;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -15,11 +14,7 @@ public class ClientServiceImpl implements ClientService {
     ClientRepository clientRepo;
 
     @Override
-    public void saveClient(Client client) throws InvalidDataException {
-        if (client == null || client.getFirstName() == null || client.getLastName() == null
-                || client.getDob() == null) {
-            throw new InvalidDataException();
-        }
+    public void saveClient(Client client) {
         clientRepo.save(client);
     }
 

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.kildani.simplebanking.entity.Beneficiary;
 import com.kildani.simplebanking.entity.Client;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 public interface BeneficiaryService {
 
@@ -18,18 +17,16 @@ public interface BeneficiaryService {
      * @param dob
      * @param benefactor
      * @return a Beneficiary object
-     * @throws InvalidDataException
      */
-    void createBeneficiary(String firstName, String lastName, LocalDate dob, Client benefactor)
-            throws InvalidDataException;
+    void createBeneficiary(String firstName, String lastName, LocalDate dob, Client benefactor);
+            
 
     /**
      * Save a beneficiary to memory; update a beneficiary in memory
      * 
      * @param beneficiary
-     * @throws InvalidDataException
      */
-    void updateBeneficiary(Beneficiary beneficiary) throws InvalidDataException;
+    void updateBeneficiary(Beneficiary beneficiary);
 
     /**
      * Delete a beneficiary from memory;
@@ -51,7 +48,6 @@ public interface BeneficiaryService {
      * 
      * @param benefactor
      * @return a list of Beneficiary objects with the matching benefactor.
-     * @throws InvalidDataException
      */
-    List<Beneficiary> findBeneficiariesByBenefactor(Client benefactor) throws InvalidDataException;
+    List<Beneficiary> findBeneficiariesByBenefactor(Client benefactor);
 }

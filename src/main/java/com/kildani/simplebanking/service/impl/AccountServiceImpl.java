@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.kildani.simplebanking.entity.Account;
 import com.kildani.simplebanking.entity.Client;
 import com.kildani.simplebanking.repository.AccountRepository;
 import com.kildani.simplebanking.service.AccountService;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
+@Service
 public class AccountServiceImpl implements AccountService {
 
     private final int MAX_ACCOUNT_AND_ROUTING_NUMBER = 999_999_998;
@@ -19,19 +20,13 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepo;
 
     @Override
-    public void createAccount(String accountType, Client owner) throws InvalidDataException {
-        if (accountType == null || owner == null) {
-            throw new InvalidDataException();
-        }
+    public void createAccount(String accountType, Client owner) {
         int[] numbers = generateAccountAndRoutingNumbers();
         accountRepo.save(new Account(accountType, numbers[0], numbers[1], owner));
     }
 
     @Override
-    public void updateAccount(Account account) throws InvalidDataException {
-        if (account == null) {
-            throw new InvalidDataException();
-        }
+    public void updateAccount(Account account) {
         accountRepo.save(account);
     }
 

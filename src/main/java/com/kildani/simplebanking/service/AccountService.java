@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.kildani.simplebanking.entity.Account;
 import com.kildani.simplebanking.entity.Client;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 public interface AccountService {
 
@@ -14,17 +13,15 @@ public interface AccountService {
      * 
      * @param accountType
      * @param owner
-     * @throws InvalidDataException
      */
-    void createAccount(String accountType, Client owner) throws InvalidDataException;
+    void createAccount(String accountType, Client owner);
 
     /**
      * Updates account if account in memory.
      * 
      * @param account
-     * @throws InvalidDataException
      */
-    void updateAccount(Account account) throws InvalidDataException;
+    void updateAccount(Account account);
 
     /**
      * Delete an account from memory.

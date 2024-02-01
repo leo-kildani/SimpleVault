@@ -9,7 +9,6 @@ import com.kildani.simplebanking.entity.Beneficiary;
 import com.kildani.simplebanking.entity.Client;
 import com.kildani.simplebanking.repository.BeneficiaryRepository;
 import com.kildani.simplebanking.service.BeneficiaryService;
-import com.kildani.simplebanking.service.exceptions.InvalidDataException;
 
 public class BeneficiaryServiceImpl implements BeneficiaryService {
 
@@ -18,18 +17,12 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
     @Override
     public void createBeneficiary(String firstName, String lastName, LocalDate dob, Client benefactor)
-            throws InvalidDataException {
-        if (firstName == null || lastName == null || dob == null || benefactor == null) {
-            throw new InvalidDataException();
-        }
+             {
         beneficiaryRepo.save(new Beneficiary(firstName, lastName, dob, benefactor));
     }
 
     @Override
-    public void updateBeneficiary(Beneficiary beneficiary) throws InvalidDataException {
-        if (beneficiary == null) {
-            throw new InvalidDataException();
-        }
+    public void updateBeneficiary(Beneficiary beneficiary) {
         beneficiaryRepo.save(beneficiary);
     }
 
@@ -44,11 +37,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     }
 
     @Override
-    public List<Beneficiary> findBeneficiariesByBenefactor(Client benefactor) throws InvalidDataException {
-        if (benefactor == null) {
-            throw new InvalidDataException();
-        }
+    public List<Beneficiary> findBeneficiariesByBenefactor(Client benefactor) {
         return beneficiaryRepo.findByBenefactor(benefactor);
     }
-
 }
