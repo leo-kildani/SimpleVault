@@ -37,9 +37,9 @@ public class LoginController {
     @PostMapping("/create_account")
     public RedirectView createClientAccount(@RequestParam String username, @RequestParam String password,
             @ModelAttribute Client client, RedirectAttributes redirectAttributes) {
-            clientService.saveClient(client);
-            clientLoginService.createClientLogin(username, password, client, "client");
-            redirectAttributes.addFlashAttribute("createdAccount", true);
-            return new RedirectView("/login", true);
+        clientService.saveClient(client);
+        clientLoginService.createClientLogin(username, password, client, "client");
+        redirectAttributes.addFlashAttribute("createdAccount", true);
+        return new RedirectView("/login", true);
     }
 }
