@@ -34,7 +34,7 @@ public class DashBoardController {
     @GetMapping("/home")
     public String showDashBoardHome(Model model) {
         model.addAttribute("currentClient", getClientLogin().getClient());
-        return "dashboard/home";
+        return "/dashboard/home";
     }
 
     private ClientLogin getClientLogin() {
@@ -43,5 +43,4 @@ public class DashBoardController {
         }
         return clientLogin;
     }
-
 }
